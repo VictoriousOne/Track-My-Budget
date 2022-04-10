@@ -29,12 +29,12 @@ request.onsuccess = function(event) {
     console.log(event.target.errorCode);
   };
 
-// This function will be executed if we attempt to submit a new pizza and there's no internet connection
+// This function will be executed if we attempt to submit a new transaction and there's no internet connection
 function saveRecord(record) {
     // open a new transaction with the database with read and write permissions 
     const transaction = db.transaction(['new_transaction'], 'readwrite');
 
-    // access the object store for `new_pizza`
+    // access the object store for `new_transaction`
     const transactionObjectStore = transaction.objectStore('new_transaction');
 
     // add record to your store with add method
@@ -46,7 +46,7 @@ function uploadTransaction() {
     const transaction = db.transaction(['new_transaction'], 'readwrite');
 
     // access your object store
-    const transactionObjectStore = transaction.objectStore('new_pizza');
+    const transactionObjectStore = transaction.objectStore('new_transaction');
 
     // get all records from store and set to a variable
     const getAll = transactionObjectStore.getAll();

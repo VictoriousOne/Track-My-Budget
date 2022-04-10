@@ -16,14 +16,15 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-mongoose.connect(MONGODB_URI, {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/Track_My_Budget', {
   useNewUrlParser: true,
-  useFindAndModify: false
+  useUnifiedTopology: true
 });
+
+// Use this to log mongo queries being executed!
+mongoose.set('debug', true);
 
 // routes
 app.use(require("./routes/api.js"));
 
-app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}!`);
-});
+app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT}`));
